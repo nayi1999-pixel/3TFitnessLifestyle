@@ -1,98 +1,74 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3T Fitness Lifestyle</title>
+    <title>3T Fitness Lifestyle | Personalized Training & Nutrition</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
     
-    <!-- Phosphor Icons -->
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
-
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        brand: '#D92128',
-                    },
-                    fontFamily: {
-                        heading: ['Oswald', 'sans-serif'],
-                        sans: ['ui-sans-serif', 'system-ui', 'sans-serif'],
-                    }
-                }
-            }
-        }
-    </script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
 
     <style>
-        .hide-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
-        .hide-scrollbar {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
-        ::selection {
-            background-color: #D92128;
-            color: white;
-        }
-        /* Blog Modal Styles */
-        body.modal-open {
-            overflow: hidden;
-        }
+        body { font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }
+        h1, h2, h3, h4, h5, h6, .font-heading { font-family: 'Oswald', sans-serif; text-transform: uppercase; }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        ::selection { background-color: #D92128; color: white; }
     </style>
 </head>
-<body class="bg-black text-white font-sans antialiased">
+<body class="bg-black text-white antialiased overflow-x-hidden">
 
     <!-- HEADER -->
     <header class="fixed w-full top-0 z-50 bg-black/95 backdrop-blur border-b border-zinc-900">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
                 <div class="flex-shrink-0 flex items-center cursor-pointer" onclick="window.scrollTo(0,0)">
                     <span class="font-heading font-bold text-4xl italic tracking-tighter text-white">3T</span>
-                    <div class="ml-2 flex flex-col justify-center leading-none">
-                        <span class="font-heading font-bold text-xl tracking-wide text-white">FITNESS</span>
-                        <span class="text-[10px] tracking-[0.2em] text-white font-semibold">LIFESTYLE</span>
+                    <div class="ml-2 flex flex-col justify-center leading-none text-white">
+                        <span class="font-heading font-bold text-xl tracking-wide">FITNESS</span>
+                        <span class="text-[10px] tracking-[0.2em] font-semibold">LIFESTYLE</span>
                     </div>
                 </div>
 
+                <!-- Desktop Nav -->
                 <nav class="hidden md:flex space-x-8">
-                    <a href="#" class="font-heading text-sm text-zinc-300 hover:text-brand transition-colors">HOME</a>
-                    <a href="#" class="font-heading text-sm text-zinc-300 hover:text-brand transition-colors">ABOUT</a>
-                    <a href="https://3tfitness.gumroad.com/" target="_blank" rel="noopener noreferrer" class="font-heading text-sm text-zinc-300 hover:text-brand transition-colors">SHOP</a>
-                    <a href="#quiz-section" class="font-heading text-sm text-zinc-300 hover:text-brand transition-colors">PLAN BUILDER</a>
-                    <a href="#blog-section" class="font-heading text-sm text-zinc-300 hover:text-brand transition-colors">BLOG</a>
-                    <a href="https://calendly.com/3tfitnessmiami" target="_blank" rel="noopener noreferrer" class="font-heading text-sm text-zinc-300 hover:text-brand transition-colors">CONTACT US</a>
+                    <a href="#about" class="font-heading text-sm text-zinc-300 hover:text-[#D92128] transition-colors">ABOUT</a>
+                    <a href="#pricing" class="font-heading text-sm text-zinc-300 hover:text-[#D92128] transition-colors">PLANS</a>
+                    <a href="#ebooks-section" class="font-heading text-sm text-zinc-300 hover:text-[#D92128] transition-colors">RESOURCES</a>
+                    <a href="#blog-section" class="font-heading text-sm text-zinc-300 hover:text-[#D92128] transition-colors">BLOG</a>
                 </nav>
 
+                <!-- CTA & Mobile Toggle -->
                 <div class="flex items-center space-x-4">
-                    <a href="https://calendly.com/your-username" target="_blank" rel="noopener noreferrer" class="hidden md:block bg-brand hover:bg-red-700 text-white font-heading px-6 py-2.5 text-sm transition-all duration-300 rounded-sm">
-                        BOOK A CONSULTATION
+                    <a href="https://calendly.com/3tfitnessmiami" target="_blank" class="hidden md:block bg-[#D92128] hover:bg-red-700 text-white font-heading px-6 py-2.5 text-sm transition-all duration-300 rounded-sm">
+                        BOOK CONSULTATION
                     </a>
-                    <button id="mobile-menu-btn" class="md:hidden text-white p-2">
-                        <i id="menu-icon" class="ph ph-list text-3xl"></i>
+                    <button id="mobile-menu-btn" class="md:hidden text-white">
+                        <i data-lucide="menu" id="menu-icon"></i>
+                        <i data-lucide="x" id="close-icon" class="hidden"></i>
                     </button>
                 </div>
             </div>
         </div>
 
-        <!-- Mobile Nav -->
-        <div id="mobile-menu" class="hidden md:hidden bg-zinc-950 border-b border-zinc-900 absolute w-full z-40">
-            <div class="px-2 pt-2 pb-6 space-y-1 sm:px-3 flex flex-col items-center">
-                <a href="#" class="block px-3 py-3 font-heading text-lg text-white hover:text-brand">HOME</a>
-                <a href="#" class="block px-3 py-3 font-heading text-lg text-white hover:text-brand">ABOUT</a>
-                <a href="https://3tfitness.gumroad.com/" target="_blank" rel="noopener noreferrer" class="block px-3 py-3 font-heading text-lg text-white hover:text-brand">SHOP</a>
-                <a href="#quiz-section" class="block px-3 py-3 font-heading text-lg text-white hover:text-brand">PLAN BUILDER</a>
-                <a href="#blog-section" class="block px-3 py-3 font-heading text-lg text-white hover:text-brand">BLOG</a>
-                <a href="https://calendly.com/your-username" target="_blank" rel="noopener noreferrer" class="mt-4 w-[90%] bg-brand text-white text-center font-heading px-6 py-3 rounded-sm text-lg block">
-                    BOOK A CONSULTATION
+        <!-- Mobile Nav Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-zinc-950 border-b border-zinc-900 pb-6">
+            <div class="px-2 pt-2 space-y-1 sm:px-3 flex flex-col items-center">
+                <a href="#about" onclick="toggleMobileMenu()" class="block px-3 py-3 font-heading text-lg text-white hover:text-[#D92128]">ABOUT</a>
+                <a href="#pricing" onclick="toggleMobileMenu()" class="block px-3 py-3 font-heading text-lg text-white hover:text-[#D92128]">PLANS</a>
+                <a href="#ebooks-section" onclick="toggleMobileMenu()" class="block px-3 py-3 font-heading text-lg text-white hover:text-[#D92128]">RESOURCES</a>
+                <a href="#blog-section" onclick="toggleMobileMenu()" class="block px-3 py-3 font-heading text-lg text-white hover:text-[#D92128]">BLOG</a>
+                <a href="https://calendly.com/3tfitnessmiami" target="_blank" class="mt-4 w-[90%] text-center bg-[#D92128] text-white font-heading px-6 py-3 rounded-sm text-lg block">
+                    BOOK CONSULTATION
                 </a>
             </div>
         </div>
@@ -101,116 +77,179 @@
     <!-- HERO SECTION -->
     <section class="relative pt-20 pb-32 lg:pt-48 lg:pb-56 overflow-hidden">
         <div class="absolute inset-0 z-0">
-            <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=2070&auto=format&fit=crop" alt="Athlete working out" class="w-full h-full object-cover object-center opacity-40"/>
+            <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=2070&auto=format&fit=crop" alt="Athlete working out" class="w-full h-full object-cover object-center opacity-40">
             <div class="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-transparent"></div>
             <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
-            <div class="absolute top-0 right-1/4 w-96 h-full bg-brand/10 blur-[120px] pointer-events-none"></div>
+            <div class="absolute top-0 right-1/4 w-96 h-full bg-[#D92128]/10 blur-[120px] pointer-events-none"></div>
         </div>
 
         <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="max-w-2xl">
                 <h1 class="text-6xl sm:text-7xl lg:text-8xl font-heading leading-[0.85] mb-6">
                     TRAIN HARD.<br/>
-                    <span class="text-brand">LIVE BETTER.</span>
+                    <span class="text-[#D92128]">LIVE BETTER.</span>
                 </h1>
                 <p class="text-lg sm:text-xl text-zinc-300 mb-8 font-light leading-relaxed max-w-md">
-                    Personalized training. Custom nutrition.<br/>
-                    Real results that last.
+                    Trauma-informed, personalized training and custom nutrition. Real results that last.
                 </p>
                 <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-                    <a href="https://calendly.com/your-username" target="_blank" rel="noopener noreferrer" class="bg-brand hover:bg-red-700 text-white font-heading text-lg px-8 py-3.5 transition-colors rounded-sm flex-1 sm:flex-none text-center block">
+                    <a href="https://calendly.com/3tfitnessmiami" target="_blank" class="bg-[#D92128] hover:bg-red-700 text-white font-heading text-lg px-8 py-3.5 transition-colors rounded-sm flex-1 sm:flex-none text-center inline-block">
                         BOOK A CONSULTATION
                     </a>
-                    <a href="#quiz-section" class="border border-zinc-500 hover:border-white hover:bg-white/5 text-white font-heading text-lg px-8 py-3.5 transition-all rounded-sm flex items-center justify-center space-x-2 flex-1 sm:flex-none">
-                        <i class="ph-fill ph-check-square-offset text-lg"></i>
+                    <button onclick="document.getElementById('quiz-section').scrollIntoView({ behavior: 'smooth' })" class="border border-zinc-500 hover:border-white hover:bg-white/5 text-white font-heading text-lg px-8 py-3.5 transition-all rounded-sm flex items-center justify-center space-x-2 flex-1 sm:flex-none">
+                        <i data-lucide="smartphone" class="w-5 h-5"></i>
                         <span>BUILD MY PLAN</span>
-                    </a>
+                    </button>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- FEATURED PLANS & PROGRAMS (STORE & FUNNEL) -->
-    <section class="bg-black py-24 border-y border-zinc-900 relative">
-        <div class="max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- STATS BANNER -->
+    <section id="about" class="bg-black border-y border-zinc-900 relative z-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 divide-x divide-zinc-900 py-8 lg:py-12">
+                <div class="flex items-center space-x-4 p-4 lg:justify-center">
+                    <i data-lucide="users" class="text-[#D92128] w-8 h-8 hidden sm:block"></i>
+                    <div>
+                        <div class="font-heading text-3xl sm:text-4xl text-white">250+</div>
+                        <div class="font-heading text-xs sm:text-sm text-zinc-400 tracking-wider">TRANSFORMED CLIENTS</div>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4 p-4 lg:justify-center">
+                    <i data-lucide="calendar" class="text-[#D92128] w-8 h-8 hidden sm:block"></i>
+                    <div>
+                        <div class="font-heading text-3xl sm:text-4xl text-white">10+</div>
+                        <div class="font-heading text-xs sm:text-sm text-zinc-400 tracking-wider">YEARS EXPERIENCE</div>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4 p-4 lg:justify-center">
+                    <i data-lucide="dumbbell" class="text-[#D92128] w-8 h-8 hidden sm:block"></i>
+                    <div>
+                        <div class="font-heading text-3xl sm:text-4xl text-white">3,500+</div>
+                        <div class="font-heading text-xs sm:text-sm text-zinc-400 tracking-wider">POUNDS SHREDDED</div>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4 p-4 lg:justify-center">
+                    <i data-lucide="trophy" class="text-[#D92128] w-8 h-8 hidden sm:block"></i>
+                    <div>
+                        <div class="font-heading text-3xl sm:text-4xl text-white">1</div>
+                        <div class="font-heading text-xs sm:text-sm text-zinc-400 tracking-wider">MISSION: YOUR BEST LIFE</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CORE PILLARS -->
+    <section class="bg-zinc-950 py-20 lg:py-32">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-4xl lg:text-5xl font-heading uppercase">
-                    YOUR BLUEPRINT TO <span class="text-brand">SUCCESS.</span>
+                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-heading">
+                    PERSONALIZED. PROVEN. <span class="text-[#D92128]">POWERFUL.</span>
                 </h2>
-                <p class="text-zinc-400 mt-4 max-w-2xl mx-auto text-lg font-light leading-relaxed">
-                    Discover Coach Tommy's signature methodology. From trauma-informed movement to sustainable nutrition, these are the exact plans we use to build lasting results.
-                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+                <div class="bg-black border border-zinc-900 rounded-lg p-8 hover:border-zinc-700 transition-colors group">
+                    <div class="w-16 h-16 rounded-full border-2 border-[#D92128] flex items-center justify-center mb-6 group-hover:bg-[#D92128]/10 transition-colors">
+                        <i data-lucide="dumbbell" class="text-[#D92128] w-7 h-7"></i>
+                    </div>
+                    <h3 class="font-heading text-2xl mb-3">TRAUMA-INFORMED</h3>
+                    <p class="text-zinc-400 text-sm leading-relaxed">
+                        A safe, affirming approach to fitness. Custom plans built around your mental and physical needs.
+                    </p>
+                </div>
+                <div class="bg-black border border-zinc-900 rounded-lg p-8 hover:border-zinc-700 transition-colors group">
+                    <div class="w-16 h-16 rounded-full border-2 border-[#D92128] flex items-center justify-center mb-6 group-hover:bg-[#D92128]/10 transition-colors">
+                        <i data-lucide="utensils" class="text-[#D92128] w-7 h-7"></i>
+                    </div>
+                    <h3 class="font-heading text-2xl mb-3">CUSTOM NUTRITION</h3>
+                    <p class="text-zinc-400 text-sm leading-relaxed">
+                        Sustainable nutrition plans and recipe books designed to fuel your body without extreme restrictions.
+                    </p>
+                </div>
+                <div class="bg-black border border-zinc-900 rounded-lg p-8 hover:border-zinc-700 transition-colors group">
+                    <div class="w-16 h-16 rounded-full border-2 border-[#D92128] flex items-center justify-center mb-6 group-hover:bg-[#D92128]/10 transition-colors">
+                        <i data-lucide="user-check" class="text-[#D92128] w-7 h-7"></i>
+                    </div>
+                    <h3 class="font-heading text-2xl mb-3">REAL ACCOUNTABILITY</h3>
+                    <p class="text-zinc-400 text-sm leading-relaxed">
+                        Constant support, coaching, and accountability to keep you consistent and on track towards your goals.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- E-BOOK RESOURCES FUNNEL -->
+    <section id="ebooks-section" class="bg-black py-24 border-t border-zinc-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-12">
+                <div>
+                    <h2 class="text-4xl lg:text-5xl font-heading mb-4">
+                        FREE <span class="text-[#D92128]">RESOURCES</span>
+                    </h2>
+                    <p class="text-zinc-400 text-lg max-w-2xl">
+                        Level up your knowledge. Download our free guides on nutrition, transmasculine training, mindset, and trauma-informed movement.
+                    </p>
+                </div>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <!-- Training Plan -->
-                <div class="bg-zinc-950 border border-zinc-800 rounded-xl overflow-hidden group hover:border-zinc-500 transition-colors flex flex-col">
-                    <div class="h-56 overflow-hidden relative bg-zinc-900">
-                        <img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?q=80&w=800&auto=format&fit=crop" alt="3-Tier Training" class="w-full h-full object-cover opacity-50 group-hover:scale-105 transition-transform duration-700">
-                        <div class="absolute top-4 left-4 bg-brand text-white text-[10px] font-bold px-3 py-1.5 rounded-sm uppercase tracking-widest">Training Plan</div>
+                <!-- E-book 1 -->
+                <div class="bg-zinc-950 border border-zinc-800 rounded-lg overflow-hidden group hover:border-[#D92128] transition-all flex flex-col h-full">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-70">
+                        <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 to-transparent"></div>
+                        <div class="absolute bottom-4 left-4 right-4 font-heading text-xl leading-tight">THE 3T NUTRITION BLUEPRINT</div>
                     </div>
-                    <div class="p-8 flex flex-col flex-grow">
-                        <h3 class="font-heading text-2xl mb-3 text-white tracking-wide">THE 3-TIER METHODOLOGY</h3>
-                        <p class="text-zinc-400 text-sm mb-8 flex-grow leading-relaxed">
-                            Coach Tommy's signature program. Tier 1 builds mindset. Tier 2 builds physical progression. Tier 3 locks in performance and nutrition for a lifestyle that actually sticks.
-                        </p>
-                        <a href="https://3tfitness.gumroad.com/" target="_blank" rel="noopener noreferrer" class="text-brand font-heading text-sm hover:text-white transition-colors flex items-center space-x-2 w-fit">
-                            <span>VIEW TRAINING PLAN</span>
-                            <i class="ph-bold ph-arrow-right"></i>
+                    <div class="p-5 flex-grow flex flex-col justify-between">
+                        <p class="text-zinc-400 text-sm mb-6 line-clamp-4">Stop dieting and start living. This guide breaks down sustainable macro tracking, meal prep strategies, and how to fuel your body without giving up the foods you love.</p>
+                        <a href="https://canva.link/9ctrovxmvbpuec4" target="_blank" class="w-full flex items-center justify-center space-x-2 bg-white/5 hover:bg-[#D92128] text-white py-3 rounded text-sm font-heading tracking-widest transition-colors">
+                            <i data-lucide="download" class="w-4 h-4"></i><span>DOWNLOAD</span>
                         </a>
                     </div>
                 </div>
-
-                <!-- Meal Plan -->
-                <div class="bg-zinc-950 border border-zinc-800 rounded-xl overflow-hidden group hover:border-zinc-500 transition-colors flex flex-col">
-                    <div class="h-56 overflow-hidden relative bg-zinc-900">
-                        <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=800&auto=format&fit=crop" alt="Nutrition Plan" class="w-full h-full object-cover opacity-50 group-hover:scale-105 transition-transform duration-700">
-                        <div class="absolute top-4 left-4 bg-brand text-white text-[10px] font-bold px-3 py-1.5 rounded-sm uppercase tracking-widest">Nutrition</div>
+                <!-- E-book 2 -->
+                <div class="bg-zinc-950 border border-zinc-800 rounded-lg overflow-hidden group hover:border-[#D92128] transition-all flex flex-col h-full">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-70">
+                        <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 to-transparent"></div>
+                        <div class="absolute bottom-4 left-4 right-4 font-heading text-xl leading-tight">TRANSMASCULINE TRAINING GUIDE</div>
                     </div>
-                    <div class="p-8 flex flex-col flex-grow">
-                        <h3 class="font-heading text-2xl mb-3 text-white tracking-wide">SUSTAINABLE NUTRITION</h3>
-                        <p class="text-zinc-400 text-sm mb-8 flex-grow leading-relaxed">
-                            No restrictive diets. This custom meal plan includes realistic macro targets and recipe books filled with foods you actually enjoy to fuel your specific goals and lifestyle.
-                        </p>
-                        <a href="https://3tfitness.gumroad.com/" target="_blank" rel="noopener noreferrer" class="text-brand font-heading text-sm hover:text-white transition-colors flex items-center space-x-2 w-fit">
-                            <span>GET THE MEAL PLAN</span>
-                            <i class="ph-bold ph-arrow-right"></i>
+                    <div class="p-5 flex-grow flex flex-col justify-between">
+                        <p class="text-zinc-400 text-sm mb-6 line-clamp-4">A specialized chest and back hypertrophy guide designed specifically for transmen and transmasculine individuals to build affirming, powerful upper body proportions.</p>
+                        <a href="https://canva.link/4ceemh78l9y2xb6" target="_blank" class="w-full flex items-center justify-center space-x-2 bg-white/5 hover:bg-[#D92128] text-white py-3 rounded text-sm font-heading tracking-widest transition-colors">
+                            <i data-lucide="download" class="w-4 h-4"></i><span>DOWNLOAD</span>
                         </a>
                     </div>
                 </div>
-
-                <!-- EBook / Lead Funnel -->
-                <div class="bg-zinc-950 border border-zinc-800 rounded-xl overflow-hidden group hover:border-zinc-500 transition-colors flex flex-col">
-                    <div class="h-56 overflow-hidden relative bg-zinc-900">
-                        <img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?q=80&w=800&auto=format&fit=crop" alt="Chest Training" class="w-full h-full object-cover opacity-50 group-hover:scale-105 transition-transform duration-700 mix-blend-luminosity">
-                        <div class="absolute top-4 left-4 bg-zinc-200 text-black text-[10px] font-bold px-3 py-1.5 rounded-sm uppercase tracking-widest">Free E-Book</div>
+                <!-- E-book 3 -->
+                <div class="bg-zinc-950 border border-zinc-800 rounded-lg overflow-hidden group hover:border-[#D92128] transition-all flex flex-col h-full">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-70">
+                        <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 to-transparent"></div>
+                        <div class="absolute bottom-4 left-4 right-4 font-heading text-xl leading-tight">TRAUMA-INFORMED MOVEMENT</div>
                     </div>
-                    <div class="p-8 flex flex-col flex-grow">
-                        <h3 class="font-heading text-2xl mb-3 text-white tracking-wide">CHEST TRAINING FOR TRANSMEN</h3>
-                        <p class="text-zinc-400 text-sm mb-8 flex-grow leading-relaxed">
-                            Download Coach Tommy's specialized free guide designed specifically for transmen to help build confidence, strength, and a physique you are proud of.
-                        </p>
-                        <a href="https://yourmailchimp.com/free-ebook" target="_blank" rel="noopener noreferrer" class="text-brand font-heading text-sm hover:text-white transition-colors flex items-center space-x-2 w-fit">
-                            <span>DOWNLOAD FREE PDF</span>
-                            <i class="ph-bold ph-download-simple"></i>
+                    <div class="p-5 flex-grow flex flex-col justify-between">
+                        <p class="text-zinc-400 text-sm mb-6 line-clamp-4">Learn how to reconnect with your body safely. This workbook covers nervous system regulation techniques and grounding exercises to use before, during, and after your workouts.</p>
+                        <a href="https://canva.link/0mgrcj1twhefhsz" target="_blank" class="w-full flex items-center justify-center space-x-2 bg-white/5 hover:bg-[#D92128] text-white py-3 rounded text-sm font-heading tracking-widest transition-colors">
+                            <i data-lucide="download" class="w-4 h-4"></i><span>DOWNLOAD</span>
                         </a>
                     </div>
                 </div>
-
-                <!-- Trauma Group / Intake -->
-                <div class="bg-zinc-950 border border-zinc-800 rounded-xl overflow-hidden group hover:border-zinc-500 transition-colors flex flex-col">
-                    <div class="h-56 overflow-hidden relative bg-zinc-900">
-                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=800&auto=format&fit=crop" alt="Trauma Informed Coaching" class="w-full h-full object-cover opacity-50 group-hover:scale-105 transition-transform duration-700">
-                        <div class="absolute top-4 left-4 bg-brand text-white text-[10px] font-bold px-3 py-1.5 rounded-sm uppercase tracking-widest">Consultation</div>
+                <!-- E-book 4 -->
+                <div class="bg-zinc-950 border border-zinc-800 rounded-lg overflow-hidden group hover:border-[#D92128] transition-all flex flex-col h-full">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-70">
+                        <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 to-transparent"></div>
+                        <div class="absolute bottom-4 left-4 right-4 font-heading text-xl leading-tight">THE 3T MINDSET & HABIT TRACKER</div>
                     </div>
-                    <div class="p-8 flex flex-col flex-grow">
-                        <h3 class="font-heading text-2xl mb-3 text-white tracking-wide">TRAUMA-INFORMED INTAKE</h3>
-                        <p class="text-zinc-400 text-sm mb-8 flex-grow leading-relaxed">
-                            Your history matters. This dedicated intake matrix is designed for specialized wellness coaching where your past experiences are treated with respect, not pushed through.
-                        </p>
-                        <a href="https://calendly.com/your-username" target="_blank" rel="noopener noreferrer" class="text-brand font-heading text-sm hover:text-white transition-colors flex items-center space-x-2 w-fit">
-                            <span>ACCESS INTAKE MATRIX</span>
-                            <i class="ph-bold ph-arrow-right"></i>
+                    <div class="p-5 flex-grow flex flex-col justify-between">
+                        <p class="text-zinc-400 text-sm mb-6 line-clamp-4">Consistency beats intensity. Use our printable daily journal prompts and habit trackers to build unshakeable discipline and keep yourself accountable every single day.</p>
+                        <a href="https://canva.link/u5y8gag0pvplcws" target="_blank" class="w-full flex items-center justify-center space-x-2 bg-white/5 hover:bg-[#D92128] text-white py-3 rounded text-sm font-heading tracking-widest transition-colors">
+                            <i data-lucide="download" class="w-4 h-4"></i><span>DOWNLOAD</span>
                         </a>
                     </div>
                 </div>
@@ -218,202 +257,266 @@
         </div>
     </section>
 
-    <!-- BUILD YOUR PLAN (INTERACTIVE QUIZ FUNNEL) -->
-    <section id="quiz-section" class="bg-black py-24 relative overflow-hidden border-y border-zinc-900">
-        <div class="absolute top-0 right-0 w-1/3 h-full bg-brand/5 blur-[150px] pointer-events-none"></div>
-        <div class="absolute bottom-0 left-0 w-1/3 h-1/2 bg-brand/5 blur-[150px] pointer-events-none"></div>
-
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="text-center mb-10">
-                <h2 class="text-4xl lg:text-5xl font-heading uppercase text-white mb-4">
-                    BUILD YOUR <span class="text-brand">CUSTOM PLAN</span>
-                </h2>
-                <p class="text-zinc-400 text-lg">Answer 3 quick questions to discover the perfect training and nutrition path for your goals.</p>
-            </div>
-
-            <div class="bg-zinc-950 border border-zinc-800 rounded-2xl p-6 sm:p-10 shadow-2xl relative">
-                <!-- Progress Bar -->
-                <div id="quiz-progress-container" class="w-full h-2 bg-zinc-900 rounded-full mb-10 overflow-hidden">
-                    <div id="quiz-progress" class="h-full bg-brand transition-all duration-500 ease-out w-0"></div>
-                </div>
-
-                <!-- Step 1: Goals -->
-                <div id="quiz-step-1" class="quiz-step transition-all duration-500">
-                    <h3 class="text-2xl font-heading mb-6 text-center">WHAT IS YOUR PRIMARY GOAL?</h3>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <button onclick="nextQuizStep('Fat Loss')" class="bg-black border border-zinc-800 hover:border-brand p-5 rounded-xl text-left transition-all group">
-                            <i class="ph ph-fire text-3xl text-zinc-500 group-hover:text-brand mb-3 block transition-colors"></i>
-                            <span class="font-heading text-xl block">SHRED & TONE</span>
-                            <span class="text-zinc-500 text-sm">Lose body fat and reveal muscle definition.</span>
-                        </button>
-                        <button onclick="nextQuizStep('Muscle Gain')" class="bg-black border border-zinc-800 hover:border-brand p-5 rounded-xl text-left transition-all group">
-                            <i class="ph ph-barbell text-3xl text-zinc-500 group-hover:text-brand mb-3 block transition-colors"></i>
-                            <span class="font-heading text-xl block">BUILD MUSCLE</span>
-                            <span class="text-zinc-500 text-sm">Pack on size, strength, and raw power.</span>
-                        </button>
-                        <button onclick="nextQuizStep('Recomp')" class="bg-black border border-zinc-800 hover:border-brand p-5 rounded-xl text-left transition-all group">
-                            <i class="ph ph-arrows-out text-3xl text-zinc-500 group-hover:text-brand mb-3 block transition-colors"></i>
-                            <span class="font-heading text-xl block">BODY RECOMP</span>
-                            <span class="text-zinc-500 text-sm">Lose fat and build muscle simultaneously.</span>
-                        </button>
-                        <button onclick="nextQuizStep('Trauma Healing')" class="bg-black border border-zinc-800 hover:border-brand p-5 rounded-xl text-left transition-all group">
-                            <i class="ph ph-brain text-3xl text-zinc-500 group-hover:text-brand mb-3 block transition-colors"></i>
-                            <span class="font-heading text-xl block">MIND & MOVEMENT</span>
-                            <span class="text-zinc-500 text-sm">Trauma-informed fitness focusing on mental wellbeing.</span>
-                        </button>
+    <!-- QUIZ SECTION (LEAD FUNNEL) -->
+    <section id="quiz-section" class="bg-zinc-950 py-24 border-y border-zinc-900 relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-1/2 h-full bg-[#D92128]/5 blur-[100px] pointer-events-none"></div>
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            
+            <!-- Active Quiz -->
+            <div id="quiz-container" class="bg-black border border-zinc-800 p-8 md:p-12 rounded-2xl shadow-2xl block">
+                <div class="mb-8">
+                    <div class="flex justify-between items-center mb-4 text-sm font-heading tracking-widest text-zinc-500">
+                        <span id="quiz-step-indicator">STEP 1 OF 3</span>
+                        <span class="text-[#D92128]">BUILD YOUR PLAN</span>
+                    </div>
+                    <div class="w-full bg-zinc-900 h-1 rounded-full overflow-hidden">
+                        <div id="quiz-progress" class="bg-[#D92128] h-full transition-all duration-500" style="width: 0%;"></div>
                     </div>
                 </div>
 
-                <!-- Step 2: Experience -->
-                <div id="quiz-step-2" class="quiz-step hidden transition-all duration-500">
-                    <h3 class="text-2xl font-heading mb-6 text-center">WHAT IS YOUR CURRENT FITNESS LEVEL?</h3>
-                    <div class="flex flex-col space-y-4 max-w-lg mx-auto">
-                        <button onclick="nextQuizStep('Beginner')" class="bg-black border border-zinc-800 hover:border-brand p-5 rounded-xl text-center transition-all">
-                            <span class="font-heading text-xl block">BEGINNER</span>
-                            <span class="text-zinc-500 text-sm">Just starting out or getting back into it.</span>
-                        </button>
-                        <button onclick="nextQuizStep('Intermediate')" class="bg-black border border-zinc-800 hover:border-brand p-5 rounded-xl text-center transition-all">
-                            <span class="font-heading text-xl block">INTERMEDIATE</span>
-                            <span class="text-zinc-500 text-sm">Consistent for a few months, know the basics.</span>
-                        </button>
-                        <button onclick="nextQuizStep('Advanced')" class="bg-black border border-zinc-800 hover:border-brand p-5 rounded-xl text-center transition-all">
-                            <span class="font-heading text-xl block">ADVANCED</span>
-                            <span class="text-zinc-500 text-sm">Training hard for years, looking to break plateaus.</span>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Step 3: Location -->
-                <div id="quiz-step-3" class="quiz-step hidden transition-all duration-500">
-                    <h3 class="text-2xl font-heading mb-6 text-center">WHERE DO YOU PREFER TO TRAIN?</h3>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl mx-auto">
-                        <button onclick="calculateQuizResult()" class="bg-black border border-zinc-800 hover:border-brand p-5 rounded-xl text-center transition-all group">
-                            <i class="ph ph-buildings text-4xl text-zinc-500 group-hover:text-brand mb-3 mx-auto block transition-colors"></i>
-                            <span class="font-heading text-xl block">FULL GYM</span>
-                        </button>
-                        <button onclick="calculateQuizResult()" class="bg-black border border-zinc-800 hover:border-brand p-5 rounded-xl text-center transition-all group">
-                            <i class="ph ph-house text-4xl text-zinc-500 group-hover:text-brand mb-3 mx-auto block transition-colors"></i>
-                            <span class="font-heading text-xl block">HOME / NO EQUIPMENT</span>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Final Result (Lead Capture) -->
-                <div id="quiz-result" class="hidden transition-all duration-500 text-center py-6">
-                    <div class="w-20 h-20 bg-brand/20 rounded-full flex items-center justify-center mx-auto mb-6">
-                        <i class="ph-fill ph-check-circle text-5xl text-brand"></i>
-                    </div>
-                    <h3 class="text-3xl font-heading mb-3">YOUR PROFILE IS MATCHED</h3>
-                    <p class="text-zinc-400 mb-8 max-w-md mx-auto">Based on your answers, we recommend the <strong>1-On-1 Custom Coaching Protocol</strong> to ensure you hit your targets efficiently and safely.</p>
-                    
-                    <div class="flex flex-col space-y-3 sm:space-y-0 sm:flex-row sm:space-x-4 justify-center max-w-md mx-auto">
-                        <a href="https://calendly.com/your-username" target="_blank" rel="noopener noreferrer" class="bg-brand hover:bg-red-700 text-white font-heading px-8 py-3.5 rounded-sm transition-colors text-lg flex-1">
-                            BOOK STRATEGY CALL
-                        </a>
-                        <button onclick="resetQuiz()" class="bg-transparent border border-zinc-600 hover:border-white text-white font-heading px-8 py-3.5 rounded-sm transition-colors text-lg flex-1">
-                            RETAKE QUIZ
-                        </button>
-                    </div>
+                <h3 id="quiz-question" class="text-3xl md:text-4xl font-heading mb-8">What is your primary fitness goal?</h3>
+                
+                <div id="quiz-options" class="space-y-4">
+                    <!-- Options injected via JS -->
                 </div>
             </div>
+
+            <!-- Quiz Finished Screen -->
+            <div id="quiz-finished" class="bg-black border border-[#D92128] p-8 md:p-12 rounded-2xl shadow-2xl text-center hidden">
+                <i data-lucide="check-circle-2" class="w-16 h-16 mx-auto text-[#D92128] mb-6"></i>
+                <h3 class="text-4xl font-heading mb-4">PROFILE MATCHED</h3>
+                <p class="text-zinc-400 text-lg mb-8">
+                    Based on your goals and experience, we've identified the perfect coaching path for you. Let's discuss your custom strategy on a free intake call.
+                </p>
+                <a href="https://calendly.com/3tfitnessmiami" target="_blank" class="inline-block bg-[#D92128] hover:bg-red-700 text-white font-heading text-xl px-10 py-4 rounded-sm transition-colors w-full md:w-auto">
+                    SCHEDULE STRATEGY CALL
+                </a>
+                <button onclick="resetQuiz()" class="mt-6 text-zinc-500 hover:text-white text-sm block mx-auto underline">
+                    Retake Quiz
+                </button>
+            </div>
+
         </div>
     </section>
 
-    <!-- EDUCATIONAL BLOG & ARTICLES -->
-    <section id="blog-section" class="bg-zinc-950 py-24 relative border-b border-zinc-900">
+    <!-- BLOG / EDUCATION SECTION -->
+    <section id="blog-section" class="bg-black py-24 relative">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-end mb-12">
-                <div>
-                    <h2 class="text-4xl lg:text-5xl font-heading uppercase">
-                        KNOWLEDGE IS <span class="text-brand">POWER.</span>
-                    </h2>
-                    <p class="text-zinc-400 mt-3 text-lg">Educational insights, training tips, and mindset shifts from Coach Tommy.</p>
-                </div>
+            <div class="text-center mb-16">
+                <h2 class="text-4xl lg:text-5xl font-heading mb-4">
+                    KNOWLEDGE IS <span class="text-[#D92128]">POWER</span>
+                </h2>
+                <p class="text-zinc-400 max-w-2xl mx-auto text-lg">
+                    Insights on sustainable training, trauma-informed coaching, and building a body that feels like home.
+                </p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Article 1 -->
-                <article onclick="openBlog(1)" class="bg-black border border-zinc-800 rounded-xl overflow-hidden group hover:border-brand transition-colors flex flex-col cursor-pointer">
-                    <div class="h-48 overflow-hidden relative">
-                        <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=800&auto=format&fit=crop" alt="Yoga/Mindset" class="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700">
-                        <div class="absolute top-4 left-4 bg-brand text-white text-[10px] font-bold px-3 py-1.5 rounded-sm uppercase tracking-widest">Mindset</div>
+                <!-- Blog 1 -->
+                <div onclick="openModal('modal-1')" class="bg-zinc-950 border border-zinc-900 rounded-xl overflow-hidden cursor-pointer group hover:border-zinc-700 transition-colors flex flex-col">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-60 group-hover:opacity-100">
                     </div>
-                    <div class="p-6 flex flex-col flex-grow relative">
-                        <h3 class="font-heading text-xl mb-3 leading-tight group-hover:text-brand transition-colors">Why Trauma-Informed Coaching Matters</h3>
-                        <p class="text-zinc-400 text-sm mb-6 flex-grow line-clamp-3">
-                            Trauma-informed fitness means that your past experiences are treated as relevant information, not inconvenient baggage.
-                        </p>
-                        <div class="flex items-center text-xs text-zinc-500 font-heading tracking-wide">
-                            <span class="text-brand mr-2">READ ARTICLE</span> <i class="ph-bold ph-arrow-right"></i>
+                    <div class="p-6 flex-grow flex flex-col">
+                        <div class="text-[#D92128] font-heading text-xs tracking-widest mb-3">MINDSET</div>
+                        <h3 class="font-heading text-2xl mb-4 leading-tight group-hover:text-[#D92128] transition-colors">MINDSET & TRAUMA: THE FOUNDATION OF 3T</h3>
+                        <div class="mt-auto flex items-center text-sm font-semibold text-zinc-400 group-hover:text-white transition-colors">
+                            <i data-lucide="book-open" class="w-4 h-4 mr-2"></i> READ ARTICLE
                         </div>
                     </div>
-                </article>
-
-                <!-- Article 2 -->
-                <article onclick="openBlog(2)" class="bg-black border border-zinc-800 rounded-xl overflow-hidden group hover:border-brand transition-colors flex flex-col cursor-pointer">
-                    <div class="h-48 overflow-hidden relative">
-                        <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=800&auto=format&fit=crop" alt="Healthy Food" class="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700">
-                        <div class="absolute top-4 left-4 bg-brand text-white text-[10px] font-bold px-3 py-1.5 rounded-sm uppercase tracking-widest">Lifestyle</div>
+                </div>
+                <!-- Blog 2 -->
+                <div onclick="openModal('modal-2')" class="bg-zinc-950 border border-zinc-900 rounded-xl overflow-hidden cursor-pointer group hover:border-zinc-700 transition-colors flex flex-col">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-60 group-hover:opacity-100">
                     </div>
-                    <div class="p-6 flex flex-col flex-grow">
-                        <h3 class="font-heading text-xl mb-3 leading-tight group-hover:text-brand transition-colors">The 3T Fitness Lifestyle: Fixing the Design Problem</h3>
-                        <p class="text-zinc-400 text-sm mb-6 flex-grow line-clamp-3">
-                            You've probably already tried to make fitness work. You followed the plan... and then somewhere along the way it fell apart.
-                        </p>
-                        <div class="flex items-center text-xs text-zinc-500 font-heading tracking-wide">
-                            <span class="text-brand mr-2">READ ARTICLE</span> <i class="ph-bold ph-arrow-right"></i>
+                    <div class="p-6 flex-grow flex flex-col">
+                        <div class="text-[#D92128] font-heading text-xs tracking-widest mb-3">NUTRITION</div>
+                        <h3 class="font-heading text-2xl mb-4 leading-tight group-hover:text-[#D92128] transition-colors">WHY DIETS FAIL: THE SUSTAINABLE LIFESTYLE</h3>
+                        <div class="mt-auto flex items-center text-sm font-semibold text-zinc-400 group-hover:text-white transition-colors">
+                            <i data-lucide="book-open" class="w-4 h-4 mr-2"></i> READ ARTICLE
                         </div>
                     </div>
-                </article>
-
-                <!-- Article 3 -->
-                <article onclick="openBlog(3)" class="bg-black border border-zinc-800 rounded-xl overflow-hidden group hover:border-brand transition-colors flex flex-col cursor-pointer">
-                    <div class="h-48 overflow-hidden relative">
-                        <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=800&auto=format&fit=crop" alt="Chest workout" class="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700">
-                        <div class="absolute top-4 left-4 bg-brand text-white text-[10px] font-bold px-3 py-1.5 rounded-sm uppercase tracking-widest">Training</div>
+                </div>
+                <!-- Blog 3 -->
+                <div onclick="openModal('modal-3')" class="bg-zinc-950 border border-zinc-900 rounded-xl overflow-hidden cursor-pointer group hover:border-zinc-700 transition-colors flex flex-col">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-60 group-hover:opacity-100">
                     </div>
-                    <div class="p-6 flex flex-col flex-grow">
-                        <h3 class="font-heading text-xl mb-3 leading-tight group-hover:text-brand transition-colors">The Three Tiers in Practice</h3>
-                        <p class="text-zinc-400 text-sm mb-6 flex-grow line-clamp-3">
-                            The 3TFitness methodology follows three progressive tiers, each one building on the last. But the work doesn't start with your body.
-                        </p>
-                        <div class="flex items-center text-xs text-zinc-500 font-heading tracking-wide">
-                            <span class="text-brand mr-2">READ ARTICLE</span> <i class="ph-bold ph-arrow-right"></i>
+                    <div class="p-6 flex-grow flex flex-col">
+                        <div class="text-[#D92128] font-heading text-xs tracking-widest mb-3">TRAINING</div>
+                        <h3 class="font-heading text-2xl mb-4 leading-tight group-hover:text-[#D92128] transition-colors">TRAINING FOR YOUR AUTHENTIC SELF</h3>
+                        <div class="mt-auto flex items-center text-sm font-semibold text-zinc-400 group-hover:text-white transition-colors">
+                            <i data-lucide="book-open" class="w-4 h-4 mr-2"></i> READ ARTICLE
                         </div>
                     </div>
-                </article>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- FULL SCREEN BLOG MODAL -->
-    <div id="blog-modal" class="fixed inset-0 z-[100] bg-black/90 backdrop-blur-sm hidden overflow-y-auto">
-        <div class="min-h-screen px-4 py-12 flex justify-center">
-            <div class="bg-zinc-950 border border-zinc-800 rounded-xl max-w-3xl w-full relative p-6 sm:p-12 shadow-2xl">
-                <!-- Close Button -->
-                <button onclick="closeBlog()" class="absolute top-4 right-4 sm:top-6 sm:right-6 text-zinc-500 hover:text-white transition-colors bg-black rounded-full p-2 border border-zinc-800">
-                    <i class="ph-bold ph-x text-xl"></i>
+    <!-- BLOG MODALS -->
+    <!-- Modal 1 -->
+    <div id="modal-1" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 sm:p-6 md:p-12 bg-black/90 backdrop-blur-sm">
+        <div class="bg-zinc-950 border border-zinc-800 w-full max-w-3xl max-h-[90vh] rounded-2xl overflow-hidden flex flex-col shadow-2xl">
+            <div class="flex justify-between items-center p-4 md:p-6 border-b border-zinc-800 bg-black">
+                <span class="text-[#D92128] font-heading text-sm tracking-widest">MINDSET</span>
+                <button onclick="closeModal('modal-1')" class="text-zinc-400 hover:text-white p-2 rounded-full hover:bg-zinc-800 transition-colors">
+                    <i data-lucide="x"></i>
                 </button>
-                
-                <!-- Dynamic Content Container -->
-                <div id="blog-modal-content">
-                    <!-- Content injected via JS -->
+            </div>
+            <div class="overflow-y-auto p-6 md:p-10 hide-scrollbar">
+                <h2 class="text-3xl md:text-5xl font-heading mb-8 leading-tight">MINDSET & TRAUMA: THE FOUNDATION OF 3T</h2>
+                <div class="text-zinc-300 leading-relaxed text-lg">
+                    <p class="mb-4">At 3T Fitness, we understand that true transformation requires more than just picking up heavy weights. It requires a fundamental shift in how you view yourself, your body, and your past experiences.</p>
+                    <p class="mb-4">Our methodology is deeply rooted in trauma-informed care. For many, the gym can be an intimidating, triggering, or unsafe space. Whether it's overcoming body dysmorphia, navigating the world as a trans individual, or dealing with past physical/emotional trauma, your lived experience matters.</p>
+                    <p class="mb-4">We focus on nervous system regulation, establishing safety in your body, and using fitness as a tool for empowerment rather than punishment. You are in control of your journey here.</p>
+                </div>
+                <div class="mt-12 pt-8 border-t border-zinc-800 text-center">
+                    <h4 class="font-heading text-2xl mb-6">READY TO TAKE ACTION?</h4>
+                    <a href="https://calendly.com/3tfitnessmiami" target="_blank" class="inline-block bg-[#D92128] hover:bg-red-700 text-white font-heading text-xl px-10 py-4 rounded-sm transition-colors w-full md:w-auto">BOOK AN INTAKE CONSULTATION</a>
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- Modal 2 -->
+    <div id="modal-2" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 sm:p-6 md:p-12 bg-black/90 backdrop-blur-sm">
+        <div class="bg-zinc-950 border border-zinc-800 w-full max-w-3xl max-h-[90vh] rounded-2xl overflow-hidden flex flex-col shadow-2xl">
+            <div class="flex justify-between items-center p-4 md:p-6 border-b border-zinc-800 bg-black">
+                <span class="text-[#D92128] font-heading text-sm tracking-widest">NUTRITION</span>
+                <button onclick="closeModal('modal-2')" class="text-zinc-400 hover:text-white p-2 rounded-full hover:bg-zinc-800 transition-colors">
+                    <i data-lucide="x"></i>
+                </button>
+            </div>
+            <div class="overflow-y-auto p-6 md:p-10 hide-scrollbar">
+                <h2 class="text-3xl md:text-5xl font-heading mb-8 leading-tight">WHY DIETS FAIL: THE SUSTAINABLE LIFESTYLE</h2>
+                <div class="text-zinc-300 leading-relaxed text-lg">
+                    <p class="mb-4">If you're tired of starting over every Monday, it's because you're relying on a system built to fail. Restrictive diets, cutting out entire food groups, and eating 1,200 calories a day are a fast track to burnout and binge eating.</p>
+                    <p class="mb-4">At 3T, we teach sustainable nutrition. This means understanding your macronutrients, fueling your workouts properly, and yes—eating the foods you actually enjoy. Fitness should add to your life, not take away from it.</p>
+                    <p class="mb-4">We build custom plans that fit your real life, whether you have 3 kids, work 60 hours a week, or travel constantly. Let's find your sustainable baseline.</p>
+                </div>
+                <div class="mt-12 pt-8 border-t border-zinc-800 text-center">
+                    <h4 class="font-heading text-2xl mb-6">READY TO TAKE ACTION?</h4>
+                    <button onclick="closeModal('modal-2'); document.getElementById('quiz-section').scrollIntoView({ behavior: 'smooth' });" class="bg-[#D92128] hover:bg-red-700 text-white font-heading text-xl px-10 py-4 rounded-sm transition-colors w-full md:w-auto">TAKE THE PLAN BUILDER QUIZ</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 3 -->
+    <div id="modal-3" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 sm:p-6 md:p-12 bg-black/90 backdrop-blur-sm">
+        <div class="bg-zinc-950 border border-zinc-800 w-full max-w-3xl max-h-[90vh] rounded-2xl overflow-hidden flex flex-col shadow-2xl">
+            <div class="flex justify-between items-center p-4 md:p-6 border-b border-zinc-800 bg-black">
+                <span class="text-[#D92128] font-heading text-sm tracking-widest">TRAINING</span>
+                <button onclick="closeModal('modal-3')" class="text-zinc-400 hover:text-white p-2 rounded-full hover:bg-zinc-800 transition-colors">
+                    <i data-lucide="x"></i>
+                </button>
+            </div>
+            <div class="overflow-y-auto p-6 md:p-10 hide-scrollbar">
+                <h2 class="text-3xl md:text-5xl font-heading mb-8 leading-tight">TRAINING FOR YOUR AUTHENTIC SELF</h2>
+                <div class="text-zinc-300 leading-relaxed text-lg">
+                    <p class="mb-4">Building a body that aligns with your identity is a powerful journey. For our transmasculine clients, we emphasize strategic hypertrophy—specifically focusing on the lats, delts, and chest to build a masculine silhouette.</p>
+                    <p class="mb-4">But beyond aesthetics, training is about capability. It's about feeling strong when you carry groceries, having the endurance to hike, and moving through the world with unshakeable confidence.</p>
+                    <p class="mb-4">We emphasize progressive overload, perfect form, and consistency. Ready to start building your foundation? Check out our free training resources below.</p>
+                </div>
+                <div class="mt-12 pt-8 border-t border-zinc-800 text-center">
+                    <h4 class="font-heading text-2xl mb-6">READY TO TAKE ACTION?</h4>
+                    <button onclick="closeModal('modal-3'); document.getElementById('ebooks-section').scrollIntoView({ behavior: 'smooth' });" class="bg-[#D92128] hover:bg-red-700 text-white font-heading text-xl px-10 py-4 rounded-sm transition-colors w-full md:w-auto">DOWNLOAD FREE TRAINING GUIDES</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TESTIMONIALS -->
+    <section class="bg-black py-24 border-y border-zinc-900 relative">
+        <div class="max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl lg:text-5xl font-heading text-center mb-16">
+                REAL PEOPLE. REAL <span class="text-[#D92128]">RESULTS.</span>
+            </h2>
+
+            <div class="relative group">
+                <button onclick="scrollTestimonials('left')" class="absolute left-0 top-[35%] -translate-y-1/2 z-10 p-2 text-zinc-500 hover:text-white transition-colors bg-black/50 rounded-full hidden md:block">
+                    <i data-lucide="chevron-left" class="w-10 h-10"></i>
+                </button>
+                <button onclick="scrollTestimonials('right')" class="absolute right-0 top-[35%] -translate-y-1/2 z-10 p-2 text-zinc-500 hover:text-white transition-colors bg-black/50 rounded-full hidden md:block">
+                    <i data-lucide="chevron-right" class="w-10 h-10"></i>
+                </button>
+
+                <div id="testimonial-scroll" class="flex overflow-x-auto gap-6 pb-8 snap-x snap-mandatory hide-scrollbar">
+                    <!-- Cards -->
+                    <div class="min-w-[280px] md:min-w-[320px] lg:min-w-[350px] shrink-0 snap-start">
+                        <div class="relative aspect-video rounded-lg overflow-hidden mb-4 group cursor-pointer bg-zinc-900 border border-zinc-800">
+                            <img src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-black/20 flex items-center justify-center">
+                                <i data-lucide="play-circle" class="text-white w-12 h-12 opacity-80 group-hover:scale-110 group-hover:opacity-100 transition-all"></i>
+                            </div>
+                        </div>
+                        <div class="flex text-[#D92128] mb-3">
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        </div>
+                        <p class="text-zinc-300 font-medium mb-2 text-sm leading-relaxed min-h-[40px]">"3T changed my life. I've never felt better and stronger."</p>
+                        <p class="font-heading text-sm tracking-wide text-zinc-500">— JASON R.</p>
+                    </div>
+
+                    <div class="min-w-[280px] md:min-w-[320px] lg:min-w-[350px] shrink-0 snap-start">
+                        <div class="relative aspect-video rounded-lg overflow-hidden mb-4 group cursor-pointer bg-zinc-900 border border-zinc-800">
+                            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-black/20 flex items-center justify-center">
+                                <i data-lucide="play-circle" class="text-white w-12 h-12 opacity-80 group-hover:scale-110 group-hover:opacity-100 transition-all"></i>
+                            </div>
+                        </div>
+                        <div class="flex text-[#D92128] mb-3">
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        </div>
+                        <p class="text-zinc-300 font-medium mb-2 text-sm leading-relaxed min-h-[40px]">"The nutrition plan finally made everything click for me."</p>
+                        <p class="font-heading text-sm tracking-wide text-zinc-500">— MICHELLE T.</p>
+                    </div>
+
+                    <div class="min-w-[280px] md:min-w-[320px] lg:min-w-[350px] shrink-0 snap-start">
+                        <div class="relative aspect-video rounded-lg overflow-hidden mb-4 group cursor-pointer bg-zinc-900 border border-zinc-800">
+                            <img src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-black/20 flex items-center justify-center">
+                                <i data-lucide="play-circle" class="text-white w-12 h-12 opacity-80 group-hover:scale-110 group-hover:opacity-100 transition-all"></i>
+                            </div>
+                        </div>
+                        <div class="flex text-[#D92128] mb-3">
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        </div>
+                        <p class="text-zinc-300 font-medium mb-2 text-sm leading-relaxed min-h-[40px]">"Best coaching and accountability I've ever had."</p>
+                        <p class="font-heading text-sm tracking-wide text-zinc-500">— ROBERT K.</p>
+                    </div>
+
+                    <div class="min-w-[280px] md:min-w-[320px] lg:min-w-[350px] shrink-0 snap-start">
+                        <div class="relative aspect-video rounded-lg overflow-hidden mb-4 group cursor-pointer bg-zinc-900 border border-zinc-800">
+                            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-black/20 flex items-center justify-center">
+                                <i data-lucide="play-circle" class="text-white w-12 h-12 opacity-80 group-hover:scale-110 group-hover:opacity-100 transition-all"></i>
+                            </div>
+                        </div>
+                        <div class="flex text-[#D92128] mb-3">
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        </div>
+                        <p class="text-zinc-300 font-medium mb-2 text-sm leading-relaxed min-h-[40px]">"I have more energy, more confidence, and real results."</p>
+                        <p class="font-heading text-sm tracking-wide text-zinc-500">— LAURA P.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- PRICING SECTION -->
-    <section class="bg-zinc-950 py-24 relative overflow-hidden">
+    <section id="pricing" class="bg-zinc-950 py-24 relative overflow-hidden">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 class="text-4xl lg:text-5xl font-heading text-center mb-12">CHOOSE YOUR PATH</h2>
+            
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <!-- Package 1 -->
-                <div class="bg-black border border-zinc-800 rounded-xl p-8 relative flex flex-col hover:border-zinc-600 transition-colors">
+                <div class="bg-black border border-zinc-800 rounded-xl p-8 relative flex flex-col hover:border-[#D92128] transition-colors duration-300">
                     <div class="flex justify-between items-start mb-6">
                         <div class="flex items-center space-x-4">
-                            <div class="w-12 h-12 rounded-full border border-brand flex items-center justify-center">
-                                <i class="ph ph-device-mobile text-2xl text-brand"></i>
+                            <div class="w-12 h-12 rounded-full border border-[#D92128] flex items-center justify-center bg-[#D92128]/10">
+                                <i data-lucide="smartphone" class="text-[#D92128]"></i>
                             </div>
                             <h3 class="font-heading text-2xl tracking-wide">3T APP ACCESS</h3>
                         </div>
@@ -423,30 +526,25 @@
                         </div>
                     </div>
                     <ul class="space-y-4 flex-grow mb-8">
-                        <li class="flex items-center space-x-3 text-zinc-300">
-                            <i class="ph-fill ph-check-circle text-brand text-lg"></i><span class="text-sm">Full workout library</span>
-                        </li>
-                        <li class="flex items-center space-x-3 text-zinc-300">
-                            <i class="ph-fill ph-check-circle text-brand text-lg"></i><span class="text-sm">Nutrition & recipe books</span>
-                        </li>
-                        <li class="flex items-center space-x-3 text-zinc-300">
-                            <i class="ph-fill ph-check-circle text-brand text-lg"></i><span class="text-sm">Progress tracking</span>
-                        </li>
-                        <li class="flex items-center space-x-3 text-zinc-300">
-                            <i class="ph-fill ph-check-circle text-brand text-lg"></i><span class="text-sm">Coaching support</span>
-                        </li>
+                        <li class="flex items-center space-x-3 text-zinc-300"><i data-lucide="check-circle-2" class="text-[#D92128] w-5 h-5 shrink-0"></i><span class="text-sm">Full workout library</span></li>
+                        <li class="flex items-center space-x-3 text-zinc-300"><i data-lucide="check-circle-2" class="text-[#D92128] w-5 h-5 shrink-0"></i><span class="text-sm">Nutrition & recipe books</span></li>
+                        <li class="flex items-center space-x-3 text-zinc-300"><i data-lucide="check-circle-2" class="text-[#D92128] w-5 h-5 shrink-0"></i><span class="text-sm">Progress tracking</span></li>
+                        <li class="flex items-center space-x-3 text-zinc-300"><i data-lucide="check-circle-2" class="text-[#D92128] w-5 h-5 shrink-0"></i><span class="text-sm">Basic community support</span></li>
                     </ul>
-                    <a href="https://3tfitness.gumroad.com/" target="_blank" rel="noopener noreferrer" class="w-full bg-brand hover:bg-red-700 text-white text-center font-heading py-3 rounded-sm transition-colors text-lg tracking-wider block">
+                    <a href="https://calendly.com/3tfitnessmiami" target="_blank" class="w-full text-center bg-white/10 hover:bg-[#D92128] text-white font-heading py-3 rounded-sm transition-colors text-lg tracking-wider block">
                         GET STARTED
                     </a>
                 </div>
 
                 <!-- Package 2 -->
-                <div class="bg-black border border-zinc-800 rounded-xl p-8 relative flex flex-col hover:border-zinc-600 transition-colors">
+                <div class="bg-black border border-[#D92128] rounded-xl p-8 relative flex flex-col transform md:-translate-y-4 shadow-[0_0_30px_rgba(217,33,40,0.1)]">
+                    <div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-[#D92128] text-white font-heading text-xs px-4 py-1 rounded-full tracking-widest">
+                        MOST POPULAR
+                    </div>
                     <div class="flex justify-between items-start mb-6">
                         <div class="flex items-center space-x-4">
-                            <div class="w-12 h-12 rounded-full border border-brand flex items-center justify-center">
-                                <i class="ph ph-user text-2xl text-brand"></i>
+                            <div class="w-12 h-12 rounded-full border border-[#D92128] flex items-center justify-center bg-[#D92128]/20">
+                                <i data-lucide="user" class="text-[#D92128]"></i>
                             </div>
                             <h3 class="font-heading text-2xl tracking-wide">1-ON-1 COACHING</h3>
                         </div>
@@ -456,20 +554,13 @@
                         </div>
                     </div>
                     <ul class="space-y-4 flex-grow mb-8">
-                        <li class="flex items-center space-x-3 text-zinc-300">
-                            <i class="ph-fill ph-check-circle text-brand text-lg"></i><span class="text-sm">Custom training plan</span>
-                        </li>
-                        <li class="flex items-center space-x-3 text-zinc-300">
-                            <i class="ph-fill ph-check-circle text-brand text-lg"></i><span class="text-sm">Custom nutrition plan</span>
-                        </li>
-                        <li class="flex items-center space-x-3 text-zinc-300">
-                            <i class="ph-fill ph-check-circle text-brand text-lg"></i><span class="text-sm">Weekly check-ins</span>
-                        </li>
-                        <li class="flex items-center space-x-3 text-zinc-300">
-                            <i class="ph-fill ph-check-circle text-brand text-lg"></i><span class="text-sm">Priority coaching support</span>
-                        </li>
+                        <li class="flex items-center space-x-3 text-white font-medium"><i data-lucide="check-circle-2" class="text-[#D92128] w-5 h-5 shrink-0"></i><span class="text-sm">Custom training plan</span></li>
+                        <li class="flex items-center space-x-3 text-white font-medium"><i data-lucide="check-circle-2" class="text-[#D92128] w-5 h-5 shrink-0"></i><span class="text-sm">Custom macro nutrition plan</span></li>
+                        <li class="flex items-center space-x-3 text-white font-medium"><i data-lucide="check-circle-2" class="text-[#D92128] w-5 h-5 shrink-0"></i><span class="text-sm">Trauma-informed approach</span></li>
+                        <li class="flex items-center space-x-3 text-white font-medium"><i data-lucide="check-circle-2" class="text-[#D92128] w-5 h-5 shrink-0"></i><span class="text-sm">Weekly check-ins</span></li>
+                        <li class="flex items-center space-x-3 text-white font-medium"><i data-lucide="check-circle-2" class="text-[#D92128] w-5 h-5 shrink-0"></i><span class="text-sm">Priority 1-on-1 messaging</span></li>
                     </ul>
-                    <a href="https://calendly.com/your-username" target="_blank" rel="noopener noreferrer" class="w-full bg-brand hover:bg-red-700 text-white text-center font-heading py-3 rounded-sm transition-colors text-lg tracking-wider block">
+                    <a href="https://calendly.com/3tfitnessmiami" target="_blank" class="w-full text-center bg-[#D92128] hover:bg-red-700 text-white font-heading py-3 rounded-sm transition-colors text-lg tracking-wider block">
                         BOOK COACHING
                     </a>
                 </div>
@@ -478,285 +569,202 @@
     </section>
 
     <!-- FAQ SECTION -->
-    <section class="bg-black py-24 border-y border-zinc-900">
+    <section class="bg-black py-24 border-t border-zinc-900">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 class="text-3xl font-heading text-center mb-10 tracking-widest text-zinc-400">
                 FREQUENTLY ASKED QUESTIONS
             </h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-0" id="faq-container">
-                <!-- FAQs injected by JS -->
+            <div id="faq-container" class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-0">
+                <!-- FAQs injected via JS -->
             </div>
         </div>
     </section>
 
     <!-- FOOTER CTA -->
-    <footer class="bg-black py-20 relative text-center">
+    <footer class="bg-black py-20 relative text-center border-t border-zinc-900">
         <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 class="text-4xl md:text-5xl font-heading mb-4">
-                READY TO <span class="text-brand">TRANSFORM</span> YOUR LIFE?
+                READY TO <span class="text-[#D92128]">TRANSFORM</span> YOUR LIFE?
             </h2>
             <p class="text-zinc-400 text-lg mb-8">
-                Let's build your plan and make it happen.
+                Let's build your custom plan and make it happen.
             </p>
-            <a href="https://calendly.com/your-username" target="_blank" rel="noopener noreferrer" class="inline-block bg-brand hover:bg-red-700 text-white font-heading px-10 py-4 rounded-sm transition-colors text-lg tracking-wider">
-                BOOK YOUR CONSULTATION TODAY
+            <a href="https://calendly.com/3tfitnessmiami" target="_blank" class="inline-block bg-[#D92128] hover:bg-red-700 text-white font-heading px-10 py-4 rounded-sm transition-colors text-lg tracking-wider">
+                BOOK YOUR INTAKE CALL
             </a>
         </div>
         
         <div class="mt-20 border-t border-zinc-900 pt-8 pb-4 text-zinc-600 text-sm flex flex-col items-center">
-            <div class="flex items-center cursor-pointer mb-6 opacity-50 hover:opacity-100 transition-opacity" onclick="window.scrollTo(0,0)">
+            <div class="mb-6 flex items-center cursor-pointer opacity-50 hover:opacity-100 transition-opacity" onclick="window.scrollTo(0,0)">
                 <span class="font-heading font-bold text-4xl italic tracking-tighter text-white">3T</span>
-                <div class="ml-2 flex flex-col justify-center leading-none text-left">
-                    <span class="font-heading font-bold text-xl tracking-wide text-white">FITNESS</span>
-                    <span class="text-[10px] tracking-[0.2em] text-white font-semibold">LIFESTYLE</span>
+                <div class="ml-2 flex flex-col justify-center leading-none text-left text-white">
+                    <span class="font-heading font-bold text-xl tracking-wide">FITNESS</span>
+                    <span class="text-[10px] tracking-[0.2em] font-semibold">LIFESTYLE</span>
                 </div>
             </div>
             <p>&copy; <span id="year"></span> 3T Fitness Lifestyle. All rights reserved.</p>
         </div>
     </footer>
 
-    <!-- INTERACTIVE JAVASCRIPT -->
+    <!-- INTERACTIVE JAVASCRIPT LOGIC -->
     <script>
-        // Year
-        document.getElementById('year').textContent = new Date().getFullYear();
+        // 1. Initialize Icons
+        lucide.createIcons();
 
-        // Mobile Menu
-        const menuBtn = document.getElementById('mobile-menu-btn');
+        // Set Current Year
+        document.getElementById('year').innerText = new Date().getFullYear();
+
+        // 2. Mobile Menu Logic
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
         const menuIcon = document.getElementById('menu-icon');
+        const closeIcon = document.getElementById('close-icon');
 
-        menuBtn.addEventListener('click', () => {
+        mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+
+        function toggleMobileMenu() {
             mobileMenu.classList.toggle('hidden');
-            if(mobileMenu.classList.contains('hidden')) {
-                menuIcon.classList.remove('ph-x');
-                menuIcon.classList.add('ph-list');
+            menuIcon.classList.toggle('hidden');
+            closeIcon.classList.toggle('hidden');
+        }
+
+        // 3. Testimonial Scroll Logic
+        function scrollTestimonials(direction) {
+            const container = document.getElementById('testimonial-scroll');
+            const scrollAmount = direction === 'left' ? -350 : 350;
+            container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+        }
+
+        // 4. Blog Modal Logic
+        function openModal(id) {
+            const modal = document.getElementById(id);
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(id) {
+            const modal = document.getElementById(id);
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside the box
+        window.onclick = function(event) {
+            if (event.target.classList.contains('fixed')) {
+                event.target.classList.add('hidden');
+                event.target.classList.remove('flex');
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // 5. Quiz Logic
+        const quizQuestions = [
+            {
+                q: "What is your primary fitness goal?",
+                options: ["Build Muscle & Strength", "Lose Body Fat", "Recomp (Lose Fat & Build Muscle)", "Improve Mental Health & Mobility"]
+            },
+            {
+                q: "What is your current experience level?",
+                options: ["Beginner (Never trained consistently)", "Intermediate (Know the basics)", "Advanced (Training for years)"]
+            },
+            {
+                q: "Where do you plan to work out?",
+                options: ["Fully Equipped Gym", "Home with some dumbbells/bands", "Bodyweight only"]
+            }
+        ];
+
+        let currentStep = 0;
+
+        function renderQuiz() {
+            const q = quizQuestions[currentStep];
+            document.getElementById('quiz-step-indicator').innerText = `STEP ${currentStep + 1} OF ${quizQuestions.length}`;
+            document.getElementById('quiz-progress').style.width = `${(currentStep / quizQuestions.length) * 100}%`;
+            document.getElementById('quiz-question').innerText = q.q;
+
+            const optionsContainer = document.getElementById('quiz-options');
+            optionsContainer.innerHTML = ''; // Clear previous
+
+            q.options.forEach(opt => {
+                const btn = document.createElement('button');
+                btn.className = "w-full text-left p-5 bg-zinc-900/50 hover:bg-[#D92128]/20 border border-zinc-800 hover:border-[#D92128] rounded-xl transition-all flex justify-between items-center group";
+                btn.onclick = () => handleQuizAnswer(opt);
+                
+                btn.innerHTML = `
+                    <span class="font-medium text-lg text-zinc-200 group-hover:text-white">${opt}</span>
+                    <i data-lucide="arrow-right" class="w-5 h-5 text-zinc-600 group-hover:text-[#D92128] transition-colors"></i>
+                `;
+                optionsContainer.appendChild(btn);
+            });
+            lucide.createIcons(); // Re-initialize icons for new elements
+        }
+
+        function handleQuizAnswer(answer) {
+            if (currentStep < quizQuestions.length - 1) {
+                currentStep++;
+                renderQuiz();
             } else {
-                menuIcon.classList.remove('ph-list');
-                menuIcon.classList.add('ph-x');
+                document.getElementById('quiz-container').classList.remove('block');
+                document.getElementById('quiz-container').classList.add('hidden');
+                document.getElementById('quiz-finished').classList.remove('hidden');
             }
-        });
-
-        // Plan Builder Quiz Logic
-        let currentQuizStep = 1;
-        const totalQuizSteps = 3;
-
-        function updateProgress() {
-            const progress = ((currentQuizStep - 1) / totalQuizSteps) * 100;
-            document.getElementById('quiz-progress').style.width = `${progress}%`;
-        }
-
-        function nextQuizStep(answer) {
-            document.getElementById(`quiz-step-${currentQuizStep}`).classList.add('hidden');
-            currentQuizStep++;
-            updateProgress();
-            
-            if(currentQuizStep <= totalQuizSteps) {
-                document.getElementById(`quiz-step-${currentQuizStep}`).classList.remove('hidden');
-            }
-        }
-
-        function calculateQuizResult() {
-            document.getElementById(`quiz-step-3`).classList.add('hidden');
-            document.getElementById('quiz-progress-container').classList.add('hidden');
-            document.getElementById('quiz-result').classList.remove('hidden');
         }
 
         function resetQuiz() {
-            document.getElementById('quiz-result').classList.add('hidden');
-            document.getElementById('quiz-progress-container').classList.remove('hidden');
-            currentQuizStep = 1;
-            updateProgress();
-            document.getElementById('quiz-step-1').classList.remove('hidden');
-        }
-        
-        setTimeout(() => updateProgress(), 100);
-
-        // Blog Modal Logic
-        const blogData = {
-            1: {
-                tag: "Mindset",
-                date: "FEATURED",
-                title: "Why Trauma-Informed Coaching Matters",
-                content: `
-                    <p class="text-zinc-300 text-lg leading-relaxed mb-6">Trauma-informed fitness means that your past experiences are treated as relevant information, not inconvenient baggage.</p>
-                    
-                    <p class="text-zinc-300 text-lg leading-relaxed mb-6">For a lot of people, the relationship with their body and with exercise carries weight that goes far beyond the physical. Old injuries. Coaches who pushed too hard or said the wrong thing. Years of feeling like your body was something to fix rather than something to work with.</p>
-                    
-                    <h4 class="font-heading text-2xl text-white mb-4 mt-8">Recognizing the Patterns</h4>
-                    <p class="text-zinc-300 text-lg leading-relaxed mb-6">That history doesn't disappear when you walk into a gym. It shows up in how you respond to stress, to failure, to being pushed.</p>
-                    
-                    <p class="text-zinc-300 text-lg leading-relaxed mb-6">Coach Tommy is trained to recognize those patterns and work with them, not around them. That means you're never pushed into territory that sets you back.</p>
-                    
-                    <div class="mt-8 bg-zinc-900 border border-zinc-800 p-6 rounded-lg text-center">
-                        <p class="text-white font-heading text-xl mb-2">Progress here is real because it's built on ground that's actually stable.</p>
-                    </div>
-
-                    <!-- FUNNEL TO INTAKE/CONSULTATION -->
-                    <div class="mt-12 bg-black border border-brand/30 p-8 rounded-xl text-center relative overflow-hidden group">
-                        <div class="absolute inset-0 bg-brand/5 blur-xl group-hover:bg-brand/10 transition-colors duration-500"></div>
-                        <div class="relative z-10">
-                            <h4 class="text-white font-heading text-3xl mb-3">READY TO DO THIS DIFFERENTLY?</h4>
-                            <p class="text-zinc-400 text-base mb-8 max-w-md mx-auto">Your history matters. Fill out our trauma-informed intake matrix and let's build a foundation that actually lasts.</p>
-                            <a href="https://calendly.com/your-username" target="_blank" rel="noopener noreferrer" class="inline-block bg-brand hover:bg-red-700 text-white font-heading px-8 py-3.5 rounded-sm transition-colors text-lg tracking-wider w-full sm:w-auto">
-                                ACCESS INTAKE MATRIX
-                            </a>
-                        </div>
-                    </div>
-                `
-            },
-            2: {
-                tag: "Lifestyle",
-                date: "FEATURED",
-                title: "The 3T Fitness Lifestyle: Fixing the Design Problem",
-                content: `
-                    <p class="text-zinc-300 text-lg leading-relaxed mb-6">You've probably already tried to make fitness work. Maybe more than once.</p>
-                    
-                    <p class="text-zinc-300 text-lg leading-relaxed mb-6">You followed the plan, put in the effort, saw some results, and then somewhere along the way it fell apart. Not because you failed, but because the program was never built for you to actually sustain it. It was built to produce short-term numbers, not long-term change.</p>
-                    
-                    <h4 class="font-heading text-2xl text-brand mb-4 mt-8">THAT'S NOT A MOTIVATION PROBLEM. THAT'S A DESIGN PROBLEM.</h4>
-                    <p class="text-zinc-300 text-lg leading-relaxed mb-6">And it's exactly what Coach Tommy built 3TFitness Lifestyle to fix.</p>
-                    
-                    <h4 class="font-heading text-2xl text-white mb-4 mt-8">What Actually Changes Here</h4>
-                    <p class="text-zinc-300 text-lg leading-relaxed mb-6">When you work with Coach Tommy, the first thing you'll notice is that nobody is rushing to put you through a brutal workout on day one. That's intentional.</p>
-                    
-                    <p class="text-zinc-300 text-lg leading-relaxed mb-6">Before any programming starts, Coach Tommy takes the time to understand your full picture, not just your fitness goals, but your history with movement, what's worked before, what hasn't, and what's made you feel good or terrible along the way.</p>
-                    
-                    <p class="text-zinc-300 text-lg leading-relaxed">That conversation shapes everything that comes after. The result is a training experience that actually fits your life. You stop white-knuckling your way through workouts you dread and start building real consistency, because what you're doing feels sustainable rather than punishing.</p>
-
-                    <!-- FUNNEL TO PLAN BUILDER QUIZ -->
-                    <div class="mt-12 bg-black border border-brand/30 p-8 rounded-xl text-center relative overflow-hidden group">
-                        <div class="absolute inset-0 bg-brand/5 blur-xl group-hover:bg-brand/10 transition-colors duration-500"></div>
-                        <div class="relative z-10">
-                            <h4 class="text-white font-heading text-3xl mb-3">STOP GUESSING. START BUILDING.</h4>
-                            <p class="text-zinc-400 text-base mb-8 max-w-md mx-auto">Find out exactly what tier and program fits your current lifestyle and goals. Takes less than 60 seconds.</p>
-                            <button onclick="closeBlog(); setTimeout(() => { document.getElementById('quiz-section').scrollIntoView({behavior: 'smooth'}); }, 100);" class="inline-block bg-brand hover:bg-red-700 text-white font-heading px-8 py-3.5 rounded-sm transition-colors text-lg tracking-wider w-full sm:w-auto">
-                                TAKE THE 3-STEP QUIZ
-                            </button>
-                        </div>
-                    </div>
-                `
-            },
-            3: {
-                tag: "Training",
-                date: "FEATURED",
-                title: "The Three Tiers in Practice",
-                content: `
-                    <p class="text-zinc-300 text-lg leading-relaxed mb-6">The 3TFitness methodology follows three progressive tiers, each one building on the last.</p>
-                    
-                    <h4 class="font-heading text-2xl text-white mb-4 mt-8">TIER ONE: Mindset</h4>
-                    <p class="text-zinc-300 text-lg leading-relaxed mb-6">The work doesn't start with your body. It starts with your mindset. The first tier is about shifting how you see fitness entirely. Not as something you have to do, but as something that genuinely belongs in your life.</p>
-                    
-                    <p class="text-zinc-300 text-lg leading-relaxed mb-6">Clients who move through this stage don't just get results, they stop needing to be motivated by someone else to maintain them. That shift is the difference between a 12-week transformation and a lifestyle that sticks.</p>
-                    
-                    <h4 class="font-heading text-2xl text-white mb-4 mt-8">TIER TWO & THREE: Progression & Performance</h4>
-                    <p class="text-zinc-300 text-lg leading-relaxed mb-6">The second and third tiers build from there, layering in physical progression, nutrition, and performance in ways that compound over time rather than burning out.</p>
-                    
-                    <!-- FUNNEL TO EBOOK -->
-                    <div class="mt-12 bg-black border border-brand/30 p-8 rounded-xl text-center relative overflow-hidden group">
-                        <div class="absolute inset-0 bg-brand/5 blur-xl group-hover:bg-brand/10 transition-colors duration-500"></div>
-                        <div class="relative z-10">
-                            <h4 class="text-white font-heading text-3xl mb-3">LEVEL UP YOUR PHYSIQUE</h4>
-                            <p class="text-zinc-400 text-base mb-8 max-w-md mx-auto">Take your physical progression to the next level with Coach Tommy's specialized training guide.</p>
-                            <a href="https://yourmailchimp.com/free-ebook" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 bg-brand hover:bg-red-700 text-white font-heading px-8 py-3.5 rounded-sm transition-colors text-lg tracking-wider w-full sm:w-auto">
-                                <span>DOWNLOAD FREE E-BOOK</span>
-                                <i class="ph-bold ph-download-simple"></i>
-                            </a>
-                        </div>
-                    </div>
-                `
-            }
-        };
-
-        const modal = document.getElementById('blog-modal');
-        const modalContent = document.getElementById('blog-modal-content');
-
-        function openBlog(id) {
-            const post = blogData[id];
-            
-            modalContent.innerHTML = `
-                <div class="mb-8 border-b border-zinc-800 pb-8">
-                    <div class="flex items-center space-x-3 mb-4">
-                        <span class="bg-brand text-white text-[10px] font-bold px-3 py-1.5 rounded-sm uppercase tracking-widest">${post.tag}</span>
-                        <span class="text-zinc-500 font-heading text-sm tracking-widest">${post.date}</span>
-                    </div>
-                    <h2 class="text-3xl sm:text-4xl font-heading leading-tight">${post.title}</h2>
-                </div>
-                <div class="article-body">
-                    ${post.content}
-                </div>
-            `;
-            
-            modal.classList.remove('hidden');
-            document.body.classList.add('modal-open');
+            currentStep = 0;
+            document.getElementById('quiz-finished').classList.add('hidden');
+            document.getElementById('quiz-container').classList.remove('hidden');
+            document.getElementById('quiz-container').classList.add('block');
+            renderQuiz();
         }
 
-        function closeBlog() {
-            modal.classList.add('hidden');
-            document.body.classList.remove('modal-open');
-        }
+        // Initialize first quiz question
+        renderQuiz();
 
-        // Close modal on outside click
-        modal.addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeBlog();
-            }
-        });
-
-        // FAQ Logic
+        // 6. FAQ Accordion Logic
         const faqs = [
             { q: "How does the coaching process work?", a: "Once you sign up, you'll complete a comprehensive intake form. From there, your dedicated coach will build a custom plan tailored to your goals, lifestyle, and fitness level. We'll check in weekly to adjust protocols and ensure you're progressing." },
             { q: "Is the nutrition plan hard to follow?", a: "Not at all. We believe in sustainable nutrition, not restrictive diets. Your plan will include foods you actually enjoy, with realistic macro targets and recipe books designed for busy lifestyles." },
             { q: "Do I need a gym membership?", a: "No! While gym access allows for more variety, we can build custom workout plans designed entirely for home workouts, bodyweight, or minimal equipment based on what you have available." },
             { q: "How soon will I see results?", a: "Most clients feel a difference in energy and strength within the first 1-2 weeks. Visible physical changes typically begin to show within 3-4 weeks of consistent adherence to the training and nutrition protocols." },
-            { q: "What if I have a busy schedule?", a: "Our programs are built for busy professionals. We optimize your time by providing efficient workouts (30-45 minutes if needed) and simplified meal prep strategies so fitness fits into your life, not the other way around." },
-            { q: "Do you offer in-person training?", a: "Currently, we specialize in high-touch online coaching to provide you with the most flexible, comprehensive support possible at a fraction of the cost of in-person training." }
+            { q: "Do you offer trauma-informed coaching?", a: "Yes. 3T Fitness is built on a trauma-informed methodology. We understand that fitness isn't just physical; it's deeply connected to mental health, body image, and personal history. Our coaches provide a safe, affirming space for all individuals." }
         ];
 
-        const faqContainer = document.getElementById('faq-container');
-        faqs.forEach((faq, index) => {
-            const faqEl = document.createElement('div');
-            faqEl.className = 'border-b border-zinc-800';
-            faqEl.innerHTML = `
-                <button class="faq-btn w-full flex justify-between items-center py-5 text-left hover:text-brand transition-colors" onclick="toggleFaq(${index})">
-                    <span class="font-medium text-sm md:text-base">${faq.q}</span>
-                    <i id="icon-${index}" class="ph ph-plus text-zinc-500 shrink-0 ml-4 text-xl"></i>
-                </button>
-                <div id="content-${index}" class="overflow-hidden transition-all duration-300 ease-in-out max-h-0 opacity-0">
-                    <p class="text-zinc-400 text-sm leading-relaxed pr-8 pb-5">${faq.a}</p>
-                </div>
-            `;
-            faqContainer.appendChild(faqEl);
-        });
+        let openFaqIndex = null;
 
-        let openFaq = null;
-        function toggleFaq(index) {
-            if (openFaq !== null && openFaq !== index) {
-                document.getElementById(`content-${openFaq}`).style.maxHeight = '0px';
-                document.getElementById(`content-${openFaq}`).classList.remove('opacity-100');
-                document.getElementById(`content-${openFaq}`).classList.add('opacity-0');
-                document.getElementById(`icon-${openFaq}`).classList.remove('ph-minus');
-                document.getElementById(`icon-${openFaq}`).classList.add('ph-plus');
-            }
+        function renderFaqs() {
+            const container = document.getElementById('faq-container');
+            container.innerHTML = '';
 
-            const content = document.getElementById(`content-${index}`);
-            const icon = document.getElementById(`icon-${index}`);
-
-            if (openFaq === index) {
-                content.style.maxHeight = '0px';
-                content.classList.remove('opacity-100');
-                content.classList.add('opacity-0');
-                icon.classList.remove('ph-minus');
-                icon.classList.add('ph-plus');
-                openFaq = null;
-            } else {
-                content.style.maxHeight = content.scrollHeight + "px";
-                content.classList.remove('opacity-0');
-                content.classList.add('opacity-100');
-                icon.classList.remove('ph-plus');
-                icon.classList.add('ph-minus');
-                openFaq = index;
-            }
+            faqs.forEach((faq, index) => {
+                const div = document.createElement('div');
+                div.className = "border-b border-zinc-800";
+                
+                const isOpen = openFaqIndex === index;
+                
+                div.innerHTML = `
+                    <button onclick="toggleFaq(${index})" class="w-full flex justify-between items-center py-5 text-left hover:text-[#D92128] transition-colors">
+                        <span class="font-medium text-sm md:text-base pr-4">${faq.q}</span>
+                        <i data-lucide="${isOpen ? 'minus' : 'plus'}" class="w-4 h-4 text-zinc-500 shrink-0"></i>
+                    </button>
+                    <div class="overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? 'max-h-48 opacity-100 pb-5' : 'max-h-0 opacity-0'}">
+                        <p class="text-zinc-400 text-sm leading-relaxed">${faq.a}</p>
+                    </div>
+                `;
+                container.appendChild(div);
+            });
+            lucide.createIcons();
         }
+
+        function toggleFaq(index) {
+            openFaqIndex = openFaqIndex === index ? null : index;
+            renderFaqs();
+        }
+
+        // Initialize FAQs
+        renderFaqs();
+
     </script>
 </body>
 </html>
